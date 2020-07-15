@@ -1,0 +1,308 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DEMO VUE VTS DROPDOWN BUTTONS</title>    
+    <script src="https://unpkg.com/vue"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sulphur+Point&display=swap" rel="stylesheet"> 
+
+    <style>
+        body {
+            background-color: #e4e4e4;
+            font-family: 'Sulphur Point', sans-serif;
+        }
+
+        /* Full container of component picker */
+        .vvtsd-container{           
+            position: relative;
+            display: inline-block            
+        }
+
+        /* Button that display the items selected */
+        .vvtsd-button  {
+            display: inline-block;            
+            background-color: #ffffff;            
+            color: #458ff3;
+            padding: 0.8rem 0.8rem 0.8rem 0.8rem;
+            border-radius: 0.4rem;
+            border: 0.20rem solid #458ff3;
+        }
+
+        /* Subcontainer for all options */
+        .vvtsd-option-container{
+            padding: 0.8rem 0.8rem 0.0rem 0.8rem;
+        }
+
+        /* Dropdown dialog that show the available options */
+        .vvtsd-dialog{            
+            display: inline-block;   
+            background-color: #ffffff;
+            border-radius: 0.4rem;
+            /*padding: 0.8rem 0.8rem 0.8rem 0.8rem;*/
+            color: #9b9da2;
+            position: absolute;           
+            left: 0px;
+            top: 100%;
+            margin-top: 0.2rem;
+            min-width: 18rem;
+        }
+
+        /* Single row of option */
+        .vvtsd-option{
+            margin-bottom: 0.8rem;
+            display: flex;            
+            align-items: center; 
+        }
+
+        /* shadows */
+        .vvtsd-button, .vvtsd-dialog {
+            box-shadow: 0px 0.1rem 0.4rem 0px rgba(0,0,0,0.1);
+        }
+
+        /* checked buttons for options */
+        .vvtsd-checked-option{
+            display: inline-block;
+            width:1.0rem; 
+            height:1.0rem; 
+            background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgaWQ9InN2ZzEzODQiCiAgIHZlcnNpb249IjEuMSIKICAgdmlld0JveD0iMCAwIDUuMzQ1Njk5OCA1LjczNDM3NSIKICAgaGVpZ2h0PSI1LjczNDM3NW1tIgogICB3aWR0aD0iNS4zNDU2OTk4bW0iPgogIDxkZWZzCiAgICAgaWQ9ImRlZnMxMzc4Ij4KICAgIDxmaWx0ZXIKICAgICAgIHN0eWxlPSJjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM6c1JHQiIKICAgICAgIGlkPSJmaWx0ZXIxMzU4Ij4KICAgICAgPGZlRmxvb2QKICAgICAgICAgZmxvb2Qtb3BhY2l0eT0iMC42IgogICAgICAgICBmbG9vZC1jb2xvcj0icmdiKDAsMCwwKSIKICAgICAgICAgcmVzdWx0PSJmbG9vZCIKICAgICAgICAgaWQ9ImZlRmxvb2QxMzQ4IiAvPgogICAgICA8ZmVDb21wb3NpdGUKICAgICAgICAgaW49ImZsb29kIgogICAgICAgICBpbjI9IlNvdXJjZUdyYXBoaWMiCiAgICAgICAgIG9wZXJhdG9yPSJpbiIKICAgICAgICAgcmVzdWx0PSJjb21wb3NpdGUxIgogICAgICAgICBpZD0iZmVDb21wb3NpdGUxMzUwIiAvPgogICAgICA8ZmVHYXVzc2lhbkJsdXIKICAgICAgICAgaW49ImNvbXBvc2l0ZTEiCiAgICAgICAgIHN0ZERldmlhdGlvbj0iMC4yIgogICAgICAgICByZXN1bHQ9ImJsdXIiCiAgICAgICAgIGlkPSJmZUdhdXNzaWFuQmx1cjEzNTIiIC8+CiAgICAgIDxmZU9mZnNldAogICAgICAgICBkeD0iMCIKICAgICAgICAgZHk9IjAuMSIKICAgICAgICAgcmVzdWx0PSJvZmZzZXQiCiAgICAgICAgIGlkPSJmZU9mZnNldDEzNTQiIC8+CiAgICAgIDxmZUNvbXBvc2l0ZQogICAgICAgICBpbj0iU291cmNlR3JhcGhpYyIKICAgICAgICAgaW4yPSJvZmZzZXQiCiAgICAgICAgIG9wZXJhdG9yPSJvdmVyIgogICAgICAgICByZXN1bHQ9ImNvbXBvc2l0ZTIiCiAgICAgICAgIGlkPSJmZUNvbXBvc2l0ZTEzNTYiIC8+CiAgICA8L2ZpbHRlcj4KICA8L2RlZnM+CiAgPG1ldGFkYXRhCiAgICAgaWQ9Im1ldGFkYXRhMTM4MSI+CiAgICA8cmRmOlJERj4KICAgICAgPGNjOldvcmsKICAgICAgICAgcmRmOmFib3V0PSIiPgogICAgICAgIDxkYzpmb3JtYXQ+aW1hZ2Uvc3ZnK3htbDwvZGM6Zm9ybWF0PgogICAgICAgIDxkYzp0eXBlCiAgICAgICAgICAgcmRmOnJlc291cmNlPSJodHRwOi8vcHVybC5vcmcvZGMvZGNtaXR5cGUvU3RpbGxJbWFnZSIgLz4KICAgICAgICA8ZGM6dGl0bGU+PC9kYzp0aXRsZT4KICAgICAgPC9jYzpXb3JrPgogICAgPC9yZGY6UkRGPgogIDwvbWV0YWRhdGE+CiAgPGcKICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNzYuNjcwNTE5LC01My42ODg0NzIpIgogICAgIGlkPSJsYXllcjEiPgogICAgPGcKICAgICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01OC4zOTU4OTEsLTMxLjk5NTEyMikiCiAgICAgICBpZD0iZzk4NSIKICAgICAgIHN0eWxlPSJvcGFjaXR5OjEiPgogICAgICA8cGF0aAogICAgICAgICBzdHlsZT0iY29sb3I6IzAwMDAwMDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtc2l6ZTptZWRpdW07bGluZS1oZWlnaHQ6bm9ybWFsO2ZvbnQtZmFtaWx5OnNhbnMtc2VyaWY7Zm9udC12YXJpYW50LWxpZ2F0dXJlczpub3JtYWw7Zm9udC12YXJpYW50LXBvc2l0aW9uOm5vcm1hbDtmb250LXZhcmlhbnQtY2Fwczpub3JtYWw7Zm9udC12YXJpYW50LW51bWVyaWM6bm9ybWFsO2ZvbnQtdmFyaWFudC1hbHRlcm5hdGVzOm5vcm1hbDtmb250LXZhcmlhbnQtZWFzdC1hc2lhbjpub3JtYWw7Zm9udC1mZWF0dXJlLXNldHRpbmdzOm5vcm1hbDtmb250LXZhcmlhdGlvbi1zZXR0aW5nczpub3JtYWw7dGV4dC1pbmRlbnQ6MDt0ZXh0LWFsaWduOnN0YXJ0O3RleHQtZGVjb3JhdGlvbjpub25lO3RleHQtZGVjb3JhdGlvbi1saW5lOm5vbmU7dGV4dC1kZWNvcmF0aW9uLXN0eWxlOnNvbGlkO3RleHQtZGVjb3JhdGlvbi1jb2xvcjojMDAwMDAwO2xldHRlci1zcGFjaW5nOm5vcm1hbDt3b3JkLXNwYWNpbmc6bm9ybWFsO3RleHQtdHJhbnNmb3JtOm5vbmU7d3JpdGluZy1tb2RlOmxyLXRiO2RpcmVjdGlvbjpsdHI7dGV4dC1vcmllbnRhdGlvbjptaXhlZDtkb21pbmFudC1iYXNlbGluZTphdXRvO2Jhc2VsaW5lLXNoaWZ0OmJhc2VsaW5lO3RleHQtYW5jaG9yOnN0YXJ0O3doaXRlLXNwYWNlOm5vcm1hbDtzaGFwZS1wYWRkaW5nOjA7c2hhcGUtbWFyZ2luOjA7aW5saW5lLXNpemU6MDtjbGlwLXJ1bGU6bm9uemVybztkaXNwbGF5OmlubGluZTtvdmVyZmxvdzp2aXNpYmxlO3Zpc2liaWxpdHk6dmlzaWJsZTtpc29sYXRpb246YXV0bzttaXgtYmxlbmQtbW9kZTpub3JtYWw7Y29sb3ItaW50ZXJwb2xhdGlvbjpzUkdCO2NvbG9yLWludGVycG9sYXRpb24tZmlsdGVyczpsaW5lYXJSR0I7c29saWQtY29sb3I6IzAwMDAwMDtzb2xpZC1vcGFjaXR5OjE7dmVjdG9yLWVmZmVjdDpub25lO2ZpbGw6IzU4OTlmMTtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MC4zO3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lO3N0cm9rZS1kYXNob2Zmc2V0OjA7c3Ryb2tlLW9wYWNpdHk6MTtjb2xvci1yZW5kZXJpbmc6YXV0bztpbWFnZS1yZW5kZXJpbmc6YXV0bztzaGFwZS1yZW5kZXJpbmc6YXV0bzt0ZXh0LXJlbmRlcmluZzphdXRvO2VuYWJsZS1iYWNrZ3JvdW5kOmFjY3VtdWxhdGU7c3RvcC1jb2xvcjojMDAwMDAwO3N0b3Atb3BhY2l0eToxIgogICAgICAgICBkPSJtIDEzNy4xMzE5Nyw4NS44MzM5MDggaCAxLjIxNTc2IGMgMS4wNjA5NSwwIDEuOTE1MDcsMC44NTQxMjIgMS45MTUwNywxLjkxNTA3MSB2IDEuNjAzMDYzIGMgMCwxLjA2MDk0OSAtMC44NTQxMiwxLjkxNTA3MSAtMS45MTUwNywxLjkxNTA3MSBoIC0xLjIxNTc2IGMgLTEuMDYwOTQsMCAtMS45MTUwNywtMC44NTQxMjIgLTEuOTE1MDcsLTEuOTE1MDcxIHYgLTEuNjAzMDYzIGMgMCwtMS4wNjA5NDkgMC44NTQxMywtMS45MTUwNzEgMS45MTUwNywtMS45MTUwNzEgeiIKICAgICAgICAgaWQ9InBhdGg5ODciIC8+CiAgICAgIDxwYXRoCiAgICAgICAgIHN0eWxlPSJjb2xvcjojMDAwMDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2ZvbnQtc3RyZXRjaDpub3JtYWw7Zm9udC1zaXplOm1lZGl1bTtsaW5lLWhlaWdodDpub3JtYWw7Zm9udC1mYW1pbHk6c2Fucy1zZXJpZjtmb250LXZhcmlhbnQtbGlnYXR1cmVzOm5vcm1hbDtmb250LXZhcmlhbnQtcG9zaXRpb246bm9ybWFsO2ZvbnQtdmFyaWFudC1jYXBzOm5vcm1hbDtmb250LXZhcmlhbnQtbnVtZXJpYzpub3JtYWw7Zm9udC12YXJpYW50LWFsdGVybmF0ZXM6bm9ybWFsO2ZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOm5vcm1hbDtmb250LWZlYXR1cmUtc2V0dGluZ3M6bm9ybWFsO2ZvbnQtdmFyaWF0aW9uLXNldHRpbmdzOm5vcm1hbDt0ZXh0LWluZGVudDowO3RleHQtYWxpZ246c3RhcnQ7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dGV4dC1kZWNvcmF0aW9uLWxpbmU6bm9uZTt0ZXh0LWRlY29yYXRpb24tc3R5bGU6c29saWQ7dGV4dC1kZWNvcmF0aW9uLWNvbG9yOiMwMDAwMDA7bGV0dGVyLXNwYWNpbmc6bm9ybWFsO3dvcmQtc3BhY2luZzpub3JtYWw7dGV4dC10cmFuc2Zvcm06bm9uZTt3cml0aW5nLW1vZGU6bHItdGI7ZGlyZWN0aW9uOmx0cjt0ZXh0LW9yaWVudGF0aW9uOm1peGVkO2RvbWluYW50LWJhc2VsaW5lOmF1dG87YmFzZWxpbmUtc2hpZnQ6YmFzZWxpbmU7dGV4dC1hbmNob3I6c3RhcnQ7d2hpdGUtc3BhY2U6bm9ybWFsO3NoYXBlLXBhZGRpbmc6MDtzaGFwZS1tYXJnaW46MDtpbmxpbmUtc2l6ZTowO2NsaXAtcnVsZTpub256ZXJvO2Rpc3BsYXk6aW5saW5lO292ZXJmbG93OnZpc2libGU7dmlzaWJpbGl0eTp2aXNpYmxlO2lzb2xhdGlvbjphdXRvO21peC1ibGVuZC1tb2RlOm5vcm1hbDtjb2xvci1pbnRlcnBvbGF0aW9uOnNSR0I7Y29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzOmxpbmVhclJHQjtzb2xpZC1jb2xvcjojMDAwMDAwO3NvbGlkLW9wYWNpdHk6MTt2ZWN0b3ItZWZmZWN0Om5vbmU7ZmlsbDojMjc3ZGYxO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDowLjM7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6NDtzdHJva2UtZGFzaGFycmF5Om5vbmU7c3Ryb2tlLWRhc2hvZmZzZXQ6MDtzdHJva2Utb3BhY2l0eToxO2NvbG9yLXJlbmRlcmluZzphdXRvO2ltYWdlLXJlbmRlcmluZzphdXRvO3NoYXBlLXJlbmRlcmluZzphdXRvO3RleHQtcmVuZGVyaW5nOmF1dG87ZW5hYmxlLWJhY2tncm91bmQ6YWNjdW11bGF0ZTtzdG9wLWNvbG9yOiMwMDAwMDA7c3RvcC1vcGFjaXR5OjEiCiAgICAgICAgIGQ9Im0gMTM3LjEzMjgxLDg1LjY4MzU5NCBjIC0xLjE0MTQ0LDAgLTIuMDY2NCwwLjkyMjk5OCAtMi4wNjY0LDIuMDY0NDUzIHYgMS42MDM1MTUgYyAwLDEuMTQxNDU2IDAuOTI0OTYsMi4wNjY0MDcgMi4wNjY0LDIuMDY2NDA3IGggMS4yMTQ4NSBjIDEuMTQxNDUsMCAyLjA2NDQ1LC0wLjkyNDk1MiAyLjA2NDQ1LC0yLjA2NjQwNyB2IC0xLjYwMzUxNSBjIDAsLTEuMTQxNDU0IC0wLjkyMywtMi4wNjQ0NTMgLTIuMDY0NDUsLTIuMDY0NDUzIHogbSAwLDAuMzAwNzgxIGggMS4yMTQ4NSBjIDAuOTgwNDQsMCAxLjc2NTYyLDAuNzgzMjI4IDEuNzY1NjIsMS43NjM2NzIgdiAxLjYwMzUxNSBjIDAsMC45ODA0NDQgLTAuNzg1MTgsMS43NjU2MjYgLTEuNzY1NjIsMS43NjU2MjYgaCAtMS4yMTQ4NSBjIC0wLjk4MDQzLDAgLTEuNzY1NjIsLTAuNzg1MTgzIC0xLjc2NTYyLC0xLjc2NTYyNiB2IC0xLjYwMzUxNSBjIDAsLTAuOTgwNDQzIDAuNzg1MTksLTEuNzYzNjcyIDEuNzY1NjIsLTEuNzYzNjcyIHoiCiAgICAgICAgIGlkPSJwYXRoOTg5IiAvPgogICAgPC9nPgogICAgPHBhdGgKICAgICAgIHN0eWxlPSJjb2xvcjojMDAwMDAwO2ZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2ZvbnQtc3RyZXRjaDpub3JtYWw7Zm9udC1zaXplOm1lZGl1bTtsaW5lLWhlaWdodDpub3JtYWw7Zm9udC1mYW1pbHk6c2Fucy1zZXJpZjtmb250LXZhcmlhbnQtbGlnYXR1cmVzOm5vcm1hbDtmb250LXZhcmlhbnQtcG9zaXRpb246bm9ybWFsO2ZvbnQtdmFyaWFudC1jYXBzOm5vcm1hbDtmb250LXZhcmlhbnQtbnVtZXJpYzpub3JtYWw7Zm9udC12YXJpYW50LWFsdGVybmF0ZXM6bm9ybWFsO2ZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOm5vcm1hbDtmb250LWZlYXR1cmUtc2V0dGluZ3M6bm9ybWFsO2ZvbnQtdmFyaWF0aW9uLXNldHRpbmdzOm5vcm1hbDt0ZXh0LWluZGVudDowO3RleHQtYWxpZ246c3RhcnQ7dGV4dC1kZWNvcmF0aW9uOm5vbmU7dGV4dC1kZWNvcmF0aW9uLWxpbmU6bm9uZTt0ZXh0LWRlY29yYXRpb24tc3R5bGU6c29saWQ7dGV4dC1kZWNvcmF0aW9uLWNvbG9yOiMwMDAwMDA7bGV0dGVyLXNwYWNpbmc6bm9ybWFsO3dvcmQtc3BhY2luZzpub3JtYWw7dGV4dC10cmFuc2Zvcm06bm9uZTt3cml0aW5nLW1vZGU6bHItdGI7ZGlyZWN0aW9uOmx0cjt0ZXh0LW9yaWVudGF0aW9uOm1peGVkO2RvbWluYW50LWJhc2VsaW5lOmF1dG87YmFzZWxpbmUtc2hpZnQ6YmFzZWxpbmU7dGV4dC1hbmNob3I6c3RhcnQ7d2hpdGUtc3BhY2U6bm9ybWFsO3NoYXBlLXBhZGRpbmc6MDtzaGFwZS1tYXJnaW46MDtpbmxpbmUtc2l6ZTowO2NsaXAtcnVsZTpub256ZXJvO2Rpc3BsYXk6aW5saW5lO292ZXJmbG93OnZpc2libGU7dmlzaWJpbGl0eTp2aXNpYmxlO29wYWNpdHk6MTtpc29sYXRpb246YXV0bzttaXgtYmxlbmQtbW9kZTpub3JtYWw7Y29sb3ItaW50ZXJwb2xhdGlvbjpzUkdCO2NvbG9yLWludGVycG9sYXRpb24tZmlsdGVyczpsaW5lYXJSR0I7c29saWQtY29sb3I6IzAwMDAwMDtzb2xpZC1vcGFjaXR5OjE7dmVjdG9yLWVmZmVjdDpub25lO2ZpbGw6I2ZmZmZmZjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZTtzdHJva2Utd2lkdGg6MC40NjU7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lO3N0cm9rZS1kYXNob2Zmc2V0OjA7c3Ryb2tlLW9wYWNpdHk6MTtmaWx0ZXI6dXJsKCNmaWx0ZXIxMzU4KTtjb2xvci1yZW5kZXJpbmc6YXV0bztpbWFnZS1yZW5kZXJpbmc6YXV0bztzaGFwZS1yZW5kZXJpbmc6YXV0bzt0ZXh0LXJlbmRlcmluZzphdXRvO2VuYWJsZS1iYWNrZ3JvdW5kOmFjY3VtdWxhdGU7c3RvcC1jb2xvcjojMDAwMDAwO3N0b3Atb3BhY2l0eToxIgogICAgICAgZD0ibSA4MC40MzQxOSw1NS4yMDYwNTEgYSAwLjIzMjUsMC4yMzI1IDAgMCAwIC0wLjIwMTE3LDAuMTE3MTg3IGwgLTEuMTM2NzIsMS45NzA3MDMgLTAuNjc3NzQsLTAuNjc3NzM0IGEgMC4yMzI1LDAuMjMyNSAwIDAgMCAtMC4zMjgxMiwwIDAuMjMyNSwwLjIzMjUgMCAwIDAgMCwwLjMzMDA3OCBsIDAuODkwNjIsMC44OTA2MjUgYSAwLjIzMjUyMzI1LDAuMjMyNTIzMjUgMCAwIDAgMC4zNjUyNCwtMC4wNDg4MyBsIDEuMjg5MDYsLTIuMjMyNDIyIGEgMC4yMzI1LDAuMjMyNSAwIDAgMCAtMC4wODU5LC0wLjMxODM1OSAwLjIzMjUsMC4yMzI1IDAgMCAwIC0wLjExNTIzLC0wLjAzMTI1IHoiCiAgICAgICBpZD0icGF0aDk5MyIgLz4KICA8L2c+Cjwvc3ZnPgo=') no-repeat;
+            background-size: 100% 100%;
+            margin-right: 1rem;
+        }
+
+        .vvtsd-unchecked-option{
+            display: inline-block;
+            width:1.0rem; 
+            height:1.0rem; 
+            background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgaWQ9InN2ZzEzODQiCiAgIHZlcnNpb249IjEuMSIKICAgdmlld0JveD0iMCAwIDUuMzQ1NzA3OSA1LjczNDM3NiIKICAgaGVpZ2h0PSI1LjczNDM3Nm1tIgogICB3aWR0aD0iNS4zNDU3MDc5bW0iPgogIDxkZWZzCiAgICAgaWQ9ImRlZnMxMzc4IiAvPgogIDxtZXRhZGF0YQogICAgIGlkPSJtZXRhZGF0YTEzODEiPgogICAgPHJkZjpSREY+CiAgICAgIDxjYzpXb3JrCiAgICAgICAgIHJkZjphYm91dD0iIj4KICAgICAgICA8ZGM6Zm9ybWF0PmltYWdlL3N2Zyt4bWw8L2RjOmZvcm1hdD4KICAgICAgICA8ZGM6dHlwZQogICAgICAgICAgIHJkZjpyZXNvdXJjZT0iaHR0cDovL3B1cmwub3JnL2RjL2RjbWl0eXBlL1N0aWxsSW1hZ2UiIC8+CiAgICAgICAgPGRjOnRpdGxlPjwvZGM6dGl0bGU+CiAgICAgIDwvY2M6V29yaz4KICAgIDwvcmRmOlJERj4KICA8L21ldGFkYXRhPgogIDxnCiAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTk0Ljg0NTAwMiwtNDguNTM3NTc0KSIKICAgICBpZD0ibGF5ZXIxIj4KICAgIDxwYXRoCiAgICAgICBzdHlsZT0iY29sb3I6IzAwMDAwMDtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtc2l6ZTptZWRpdW07bGluZS1oZWlnaHQ6bm9ybWFsO2ZvbnQtZmFtaWx5OnNhbnMtc2VyaWY7Zm9udC12YXJpYW50LWxpZ2F0dXJlczpub3JtYWw7Zm9udC12YXJpYW50LXBvc2l0aW9uOm5vcm1hbDtmb250LXZhcmlhbnQtY2Fwczpub3JtYWw7Zm9udC12YXJpYW50LW51bWVyaWM6bm9ybWFsO2ZvbnQtdmFyaWFudC1hbHRlcm5hdGVzOm5vcm1hbDtmb250LXZhcmlhbnQtZWFzdC1hc2lhbjpub3JtYWw7Zm9udC1mZWF0dXJlLXNldHRpbmdzOm5vcm1hbDtmb250LXZhcmlhdGlvbi1zZXR0aW5nczpub3JtYWw7dGV4dC1pbmRlbnQ6MDt0ZXh0LWFsaWduOnN0YXJ0O3RleHQtZGVjb3JhdGlvbjpub25lO3RleHQtZGVjb3JhdGlvbi1saW5lOm5vbmU7dGV4dC1kZWNvcmF0aW9uLXN0eWxlOnNvbGlkO3RleHQtZGVjb3JhdGlvbi1jb2xvcjojMDAwMDAwO2xldHRlci1zcGFjaW5nOm5vcm1hbDt3b3JkLXNwYWNpbmc6bm9ybWFsO3RleHQtdHJhbnNmb3JtOm5vbmU7d3JpdGluZy1tb2RlOmxyLXRiO2RpcmVjdGlvbjpsdHI7dGV4dC1vcmllbnRhdGlvbjptaXhlZDtkb21pbmFudC1iYXNlbGluZTphdXRvO2Jhc2VsaW5lLXNoaWZ0OmJhc2VsaW5lO3RleHQtYW5jaG9yOnN0YXJ0O3doaXRlLXNwYWNlOm5vcm1hbDtzaGFwZS1wYWRkaW5nOjA7c2hhcGUtbWFyZ2luOjA7aW5saW5lLXNpemU6MDtjbGlwLXJ1bGU6bm9uemVybztkaXNwbGF5OmlubGluZTtvdmVyZmxvdzp2aXNpYmxlO3Zpc2liaWxpdHk6dmlzaWJsZTtvcGFjaXR5OjE7aXNvbGF0aW9uOmF1dG87bWl4LWJsZW5kLW1vZGU6bm9ybWFsO2NvbG9yLWludGVycG9sYXRpb246c1JHQjtjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM6bGluZWFyUkdCO3NvbGlkLWNvbG9yOiMwMDAwMDA7c29saWQtb3BhY2l0eToxO3ZlY3Rvci1lZmZlY3Q6bm9uZTtmaWxsOiNiNmI4YmU7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmU7c3Ryb2tlLXdpZHRoOjAuMztzdHJva2UtbGluZWNhcDpidXR0O3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2UtbWl0ZXJsaW1pdDo0O3N0cm9rZS1kYXNoYXJyYXk6bm9uZTtzdHJva2UtZGFzaG9mZnNldDowO3N0cm9rZS1vcGFjaXR5OjE7Y29sb3ItcmVuZGVyaW5nOmF1dG87aW1hZ2UtcmVuZGVyaW5nOmF1dG87c2hhcGUtcmVuZGVyaW5nOmF1dG87dGV4dC1yZW5kZXJpbmc6YXV0bztlbmFibGUtYmFja2dyb3VuZDphY2N1bXVsYXRlO3N0b3AtY29sb3I6IzAwMDAwMDtzdG9wLW9wYWNpdHk6MSIKICAgICAgIGQ9Im0gOTYuOTA5NDYyLDQ4LjUzNzU3NCBjIC0xLjE0MTQ2LDAgLTIuMDY0NDYsMC45MjQ5NTIgLTIuMDY0NDYsMi4wNjY0MDcgdiAxLjYwMTU2MiBjIDAsMS4xNDE0NTQgMC45MjMsMi4wNjY0MDcgMi4wNjQ0NiwyLjA2NjQwNyBoIDEuMjE0ODQgYyAxLjE0MTQ1LDAgMi4wNjY0MDgsLTAuOTI0OTUzIDIuMDY2NDA4LC0yLjA2NjQwNyB2IC0xLjYwMTU2MiBjIDAsLTEuMTQxNDU1IC0wLjkyNDk1OCwtMi4wNjY0MDcgLTIuMDY2NDA4LC0yLjA2NjQwNyB6IG0gMCwwLjMwMDc4MSBoIDEuMjE0ODQgYyAwLjk4MDQ0LDAgMS43NjU2MiwwLjc4NTE4MiAxLjc2NTYyLDEuNzY1NjI2IHYgMS42MDE1NjIgYyAwLDAuOTgwNDQ0IC0wLjc4NTE4LDEuNzY1NjI1IC0xLjc2NTYyLDEuNzY1NjI1IGggLTEuMjE0ODQgYyAtMC45ODA0NSwwIC0xLjc2NTYzLC0wLjc4NTE4MSAtMS43NjU2MywtMS43NjU2MjUgdiAtMS42MDE1NjIgYyAwLC0wLjk4MDQ0NCAwLjc4NTE4LC0xLjc2NTYyNiAxLjc2NTYzLC0xLjc2NTYyNiB6IgogICAgICAgaWQ9InBhdGg5OTgiIC8+CiAgPC9nPgo8L3N2Zz4K') no-repeat;
+            background-size: 100% 100%;       
+            margin-right: 0.8rem;
+        }
+
+        /* Style for done button */ 
+        .vvtsd-done-button{
+            background-color: #e7f0ff;
+            border-radius: 0.4rem;
+            padding: 1.0rem 1.0rem 1.0rem 1.0rem;
+            color: #428df3; 
+            border: 0px;
+            font-size: 1em;       
+            float: right;   
+            margin: 1.0rem;  
+            font-weight: 500;
+        }
+
+        .vvtsd-done-button:Active{
+            opacity: 0.5;
+        }
+
+        /* style for separador in options dialog */
+        .vvtsd-dialog-separator{
+            height: 0.1rem;
+            background-color: #e6e7eb;
+
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="app">        
+        <vue-vts-dropdown-multiple 
+            v-bind:selected_options="dataDropdowns.dataDropdowTwo.selected_options" 
+            v-bind:empty_message="dataDropdowns.dataDropdowTwo.empty_message"                       
+            v-bind:options="dataDropdowns.dataDropdowTwo.options"></vue-vts-dropdown-multiple>        
+
+        <vue-vts-dropdown-multiple 
+            v-bind:selected_options="dataDropdowns.dataDropdowOne.selected_options" 
+            v-bind:empty_message="dataDropdowns.dataDropdowOne.empty_message"                       
+            v-bind:options="dataDropdowns.dataDropdowOne.options"></vue-vts-dropdown-multiple>        
+    
+    </div>
+    
+    <script type="text/x-template" id="vue-vts-dropdown-multiple-template">
+        <div class="vvtsd-container" v-click-outside="closeDialog">           
+            <div class="vvtsd-button" v-on:click="toggleDialog()">
+                {{ generatePickerText() }}                           
+            </div>
+            <div 
+                class="vvtsd-dialog" 
+                v-if="isPickerShow">
+                <div class="vvtsd-option-container">
+                    <div 
+                        class="vvtsd-option"                    
+                        v-on:click="toggleSelectAllOptions()">
+                        <div class="vvtsd-checked-option" v-if="isAllOptionsSelectedComputed" ></div>
+                        <div class="vvtsd-unchecked-option" v-else ></div> 
+                        {{ select_all_options_text }}
+                    </div>
+                    <div 
+                        class="vvtsd-option"
+                        v-for="option in optionsComputed" 
+                        :key="option.id"
+                        v-on:click="toggleSelectOption(option)">
+                        <div class="vvtsd-checked-option" v-if="option.isSelected" ></div>
+                        <div class="vvtsd-unchecked-option" v-else ></div>  {{ option.title }}
+                    </div>
+                </div>
+                <div class="vvtsd-dialog-separator"></div>
+                <button 
+                    class="vvtsd-done-button"
+                    v-on:click="toggleDialog()">{{done_button_text}}</button>
+            </div>                 
+        </div>
+    </script>
+
+    <script >
+    Vue.component('vue-vts-dropdown-multiple', {
+        props: {            
+            'empty_message': {
+                //String to display when there is none item selected
+                type: String,
+                default: "Please select at least one option"
+            }, 
+            'options':{
+                //Array with items with the form {title:"This is an option"} to show as options
+                type: Array,
+                default: []
+            },
+            'done_button_text': {
+                //String to display on the Done button
+                type: String,
+                default: "Done"
+            }, 
+            'select_all_options_text': {
+                //String to display on the select all options
+                type: String,
+                default: "All Arrangement Types"
+            },                              
+        },
+        data:  function () {
+            return {              
+                'isPickerShow': false,
+                'selected_options' : []
+
+            }
+        },
+        template: '#vue-vts-dropdown-multiple-template',        
+        methods:{
+            closeDialog(event){
+                this.isPickerShow = false
+            },
+            toggleDialog(){                                      
+                //Toggle visibility of picker dialog
+                this.isPickerShow = !this.isPickerShow
+            },
+            toggleSelectAllOptions(){
+                if(this.isAllOptionsSelectedComputed){
+                    this.selected_options = []
+                }else{
+                    this.selected_options = [...this.options]
+                }
+                
+            },
+            toggleSelectOption(option){
+
+                if(this.selected_options.some( //Exists element in selected
+                        selected_option => selected_option.id === option.id)){
+                    //Remove from selected
+                    this.selected_options = 
+                        this.selected_options.filter(
+                            selected_option => selected_option.id !== option.id)                        
+                }else{
+                    //Add to selected
+                    this.selected_options = this.selected_options.concat(option)
+                }
+            },
+            generatePickerText(){
+                //Return the text used for the picker button
+                switch(this.selected_options.length){
+                    case 0:{
+                        return this.empty_message    
+                    }
+                    case 1:{
+                        return this.selected_options[0].title    
+                    }
+                    default:{
+                        return `+${this.selected_options.length-1} ${this.selected_options[0].title}`
+                    }
+                }                
+                
+            }
+        },        
+        computed: {        
+            optionsComputed() {        
+                //Returns the options with a new attribute indicating the item is selected
+                return this.options.map(
+                    option => this.selected_options.some(
+                        selected_option => selected_option.id === option.id)
+                    ?   {
+                            ...option,
+                            isSelected: true
+                        }
+                    : {
+                            ...option,
+                            isSelected: false
+                        })
+            },
+            isAllOptionsSelectedComputed() {
+                //Is true if all the options are the selected_options array (all items selected)
+                return this.selected_options.length === this.options.length
+            }
+        }    
+    })
+
+    Vue.directive('click-outside', {
+        bind: function (el, binding, vnode) {
+            el.clickOutsideEvent = function (event) {
+            // here I check that click was outside the el and his childrens
+            if (!(el == event.target || el.contains(event.target))) {
+                // and if it did, call method provided in attribute value
+                vnode.context[binding.expression](event);
+            }
+            };
+            document.body.addEventListener('click', el.clickOutsideEvent)
+        },
+        unbind: function (el) {
+            document.body.removeEventListener('click', el.clickOutsideEvent)
+        },
+    })
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!',
+            dataDropdowns:{
+                dataDropdowOne:{
+                    selected_options: [],
+                    empty_message: "Please select at least one option",
+                    options:[
+                        {
+                            id:"1",
+                            title:"Private Room"
+                        },
+                        {
+                            id:"2",
+                            title:"Shared Room"
+                        }
+                    ]
+                },
+                dataDropdowTwo:{
+                    selected_options: [],
+                    empty_message: "Please select at least one option",
+                    options:[
+                        {
+                            id:"1",
+                            title:"Airbnb"
+                        },
+                        {
+                            id:"2",
+                            title:"Vrbo"
+                        }
+                    ]
+                }
+            }
+        }
+    })
+      </script>
+</body>
+</html>
