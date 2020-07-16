@@ -37,14 +37,14 @@
         .vvtsd-dialog{            
             display: inline-block;   
             background-color: #ffffff;
-            border-radius: 0.4rem;
-            /*padding: 0.8rem 0.8rem 0.8rem 0.8rem;*/
+            border-radius: 0.4rem;            
             color: #9b9da2;
             position: absolute;           
             left: 0px;
             top: 100%;
             margin-top: 0.2rem;
             min-width: 18rem;
+            z-index: 100;
         }
 
         /* Single row of option */
@@ -78,6 +78,25 @@
             margin-right: 0.8rem;
         }
 
+         /* checked buttons for options */
+         .vvtsd-checked-single-option{
+            display: inline-block;
+            width:1.0rem; 
+            height:1.0rem; 
+            background:  url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgaWQ9InN2ZzEzODQiCiAgIHZlcnNpb249IjEuMSIKICAgdmlld0JveD0iMCAwIDUuMzE0NDUzMSA1LjMxNDQ0OTgiCiAgIGhlaWdodD0iNS4zMTQ0NDk4bW0iCiAgIHdpZHRoPSI1LjMxNDQ1MzFtbSI+CiAgPGRlZnMKICAgICBpZD0iZGVmczEzNzgiPgogICAgPGZpbHRlcgogICAgICAgc3R5bGU9ImNvbG9yLWludGVycG9sYXRpb24tZmlsdGVyczpzUkdCIgogICAgICAgaWQ9ImZpbHRlcjEzNTgiPgogICAgICA8ZmVGbG9vZAogICAgICAgICBmbG9vZC1vcGFjaXR5PSIwLjYiCiAgICAgICAgIGZsb29kLWNvbG9yPSJyZ2IoMCwwLDApIgogICAgICAgICByZXN1bHQ9ImZsb29kIgogICAgICAgICBpZD0iZmVGbG9vZDEzNDgiIC8+CiAgICAgIDxmZUNvbXBvc2l0ZQogICAgICAgICBpbj0iZmxvb2QiCiAgICAgICAgIGluMj0iU291cmNlR3JhcGhpYyIKICAgICAgICAgb3BlcmF0b3I9ImluIgogICAgICAgICByZXN1bHQ9ImNvbXBvc2l0ZTEiCiAgICAgICAgIGlkPSJmZUNvbXBvc2l0ZTEzNTAiIC8+CiAgICAgIDxmZUdhdXNzaWFuQmx1cgogICAgICAgICBpbj0iY29tcG9zaXRlMSIKICAgICAgICAgc3RkRGV2aWF0aW9uPSIwLjIiCiAgICAgICAgIHJlc3VsdD0iYmx1ciIKICAgICAgICAgaWQ9ImZlR2F1c3NpYW5CbHVyMTM1MiIgLz4KICAgICAgPGZlT2Zmc2V0CiAgICAgICAgIGR4PSIwIgogICAgICAgICBkeT0iMC4xIgogICAgICAgICByZXN1bHQ9Im9mZnNldCIKICAgICAgICAgaWQ9ImZlT2Zmc2V0MTM1NCIgLz4KICAgICAgPGZlQ29tcG9zaXRlCiAgICAgICAgIGluPSJTb3VyY2VHcmFwaGljIgogICAgICAgICBpbjI9Im9mZnNldCIKICAgICAgICAgb3BlcmF0b3I9Im92ZXIiCiAgICAgICAgIHJlc3VsdD0iY29tcG9zaXRlMiIKICAgICAgICAgaWQ9ImZlQ29tcG9zaXRlMTM1NiIgLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8bWV0YWRhdGEKICAgICBpZD0ibWV0YWRhdGExMzgxIj4KICAgIDxyZGY6UkRGPgogICAgICA8Y2M6V29yawogICAgICAgICByZGY6YWJvdXQ9IiI+CiAgICAgICAgPGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+CiAgICAgICAgPGRjOnR5cGUKICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPgogICAgICAgIDxkYzp0aXRsZT48L2RjOnRpdGxlPgogICAgICA8L2NjOldvcms+CiAgICA8L3JkZjpSREY+CiAgPC9tZXRhZGF0YT4KICA8ZwogICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKC04OC44NDY3NTEsLTUwLjc2Mzk3NykiCiAgICAgaWQ9ImxheWVyMSI+CiAgICA8cGF0aAogICAgICAgc3R5bGU9ImNvbG9yOiMwMDAwMDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDtmb250LXdlaWdodDpub3JtYWw7Zm9udC1zdHJldGNoOm5vcm1hbDtmb250LXNpemU6bWVkaXVtO2xpbmUtaGVpZ2h0Om5vcm1hbDtmb250LWZhbWlseTpzYW5zLXNlcmlmO2ZvbnQtdmFyaWFudC1saWdhdHVyZXM6bm9ybWFsO2ZvbnQtdmFyaWFudC1wb3NpdGlvbjpub3JtYWw7Zm9udC12YXJpYW50LWNhcHM6bm9ybWFsO2ZvbnQtdmFyaWFudC1udW1lcmljOm5vcm1hbDtmb250LXZhcmlhbnQtYWx0ZXJuYXRlczpub3JtYWw7Zm9udC12YXJpYW50LWVhc3QtYXNpYW46bm9ybWFsO2ZvbnQtZmVhdHVyZS1zZXR0aW5nczpub3JtYWw7Zm9udC12YXJpYXRpb24tc2V0dGluZ3M6bm9ybWFsO3RleHQtaW5kZW50OjA7dGV4dC1hbGlnbjpzdGFydDt0ZXh0LWRlY29yYXRpb246bm9uZTt0ZXh0LWRlY29yYXRpb24tbGluZTpub25lO3RleHQtZGVjb3JhdGlvbi1zdHlsZTpzb2xpZDt0ZXh0LWRlY29yYXRpb24tY29sb3I6IzAwMDAwMDtsZXR0ZXItc3BhY2luZzpub3JtYWw7d29yZC1zcGFjaW5nOm5vcm1hbDt0ZXh0LXRyYW5zZm9ybTpub25lO3dyaXRpbmctbW9kZTpsci10YjtkaXJlY3Rpb246bHRyO3RleHQtb3JpZW50YXRpb246bWl4ZWQ7ZG9taW5hbnQtYmFzZWxpbmU6YXV0bztiYXNlbGluZS1zaGlmdDpiYXNlbGluZTt0ZXh0LWFuY2hvcjpzdGFydDt3aGl0ZS1zcGFjZTpub3JtYWw7c2hhcGUtcGFkZGluZzowO3NoYXBlLW1hcmdpbjowO2lubGluZS1zaXplOjA7Y2xpcC1ydWxlOm5vbnplcm87ZGlzcGxheTppbmxpbmU7b3ZlcmZsb3c6dmlzaWJsZTt2aXNpYmlsaXR5OnZpc2libGU7b3BhY2l0eToxO2lzb2xhdGlvbjphdXRvO21peC1ibGVuZC1tb2RlOm5vcm1hbDtjb2xvci1pbnRlcnBvbGF0aW9uOnNSR0I7Y29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzOmxpbmVhclJHQjtzb2xpZC1jb2xvcjojMDAwMDAwO3NvbGlkLW9wYWNpdHk6MTt2ZWN0b3ItZWZmZWN0Om5vbmU7ZmlsbDojNTg5OWYxO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDoxLjQ2NTtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLW1pdGVybGltaXQ6NDtzdHJva2UtZGFzaGFycmF5Om5vbmU7c3Ryb2tlLWRhc2hvZmZzZXQ6MDtzdHJva2Utb3BhY2l0eToxO2NvbG9yLXJlbmRlcmluZzphdXRvO2ltYWdlLXJlbmRlcmluZzphdXRvO3NoYXBlLXJlbmRlcmluZzphdXRvO3RleHQtcmVuZGVyaW5nOmF1dG87ZW5hYmxlLWJhY2tncm91bmQ6YWNjdW11bGF0ZTtzdG9wLWNvbG9yOiMwMDAwMDA7c3RvcC1vcGFjaXR5OjEiCiAgICAgICBkPSJtIDkxLjUwNDk1NCw1MC43NjM5NzcgYyAtMS40NTkxNTksMCAtMi42NTgyMDMsMS4xOTkwNCAtMi42NTgyMDMsMi42NTgyIDAsMS40NTkxNiAxLjE5OTA0NCwyLjY1NjI1IDIuNjU4MjAzLDIuNjU2MjUgMS40NTkxNTksMCAyLjY1NjI0OSwtMS4xOTcwOSAyLjY1NjI1LC0yLjY1NjI1IC0xMGUtNywtMS40NTkxNiAtMS4xOTcwOTEsLTIuNjU4MiAtMi42NTYyNSwtMi42NTgyIHogbSAwLDEuNDY0ODQgYyAwLjY2NzQxNCwwIDEuMTkxNDA2LDAuNTI1OTUgMS4xOTE0MDYsMS4xOTMzNiAwLDAuNjY3NDIgLTAuNTIzOTkyLDEuMTkxNDEgLTEuMTkxNDA2LDEuMTkxNDEgLTAuNjY3NDE0LDAgLTEuMTkzMzU5LC0wLjUyMzk5IC0xLjE5MzM2LC0xLjE5MTQxIDEwZS03LC0wLjY2NzQxIDAuNTI1OTQ2LC0xLjE5MzM2IDEuMTkzMzYsLTEuMTkzMzYgeiIKICAgICAgIGlkPSJwYXRoMTUwNCIgLz4KICA8L2c+Cjwvc3ZnPgo=') no-repeat;
+            background-size: 100% 100%;
+            margin-right: 1rem;
+        }
+
+        .vvtsd-unchecked-single-option{
+            display: inline-block;
+            width:1.0rem; 
+            height:1.0rem; 
+            background:  url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgaWQ9InN2ZzEzODQiCiAgIHZlcnNpb249IjEuMSIKICAgdmlld0JveD0iMCAwIDQuOTE3OTcwMiA0LjkxNzk2MDIiCiAgIGhlaWdodD0iNC45MTc5NjAybW0iCiAgIHdpZHRoPSI0LjkxNzk3MDJtbSI+CiAgPGRlZnMKICAgICBpZD0iZGVmczEzNzgiPgogICAgPGZpbHRlcgogICAgICAgc3R5bGU9ImNvbG9yLWludGVycG9sYXRpb24tZmlsdGVyczpzUkdCIgogICAgICAgaWQ9ImZpbHRlcjEzNTgiPgogICAgICA8ZmVGbG9vZAogICAgICAgICBmbG9vZC1vcGFjaXR5PSIwLjYiCiAgICAgICAgIGZsb29kLWNvbG9yPSJyZ2IoMCwwLDApIgogICAgICAgICByZXN1bHQ9ImZsb29kIgogICAgICAgICBpZD0iZmVGbG9vZDEzNDgiIC8+CiAgICAgIDxmZUNvbXBvc2l0ZQogICAgICAgICBpbj0iZmxvb2QiCiAgICAgICAgIGluMj0iU291cmNlR3JhcGhpYyIKICAgICAgICAgb3BlcmF0b3I9ImluIgogICAgICAgICByZXN1bHQ9ImNvbXBvc2l0ZTEiCiAgICAgICAgIGlkPSJmZUNvbXBvc2l0ZTEzNTAiIC8+CiAgICAgIDxmZUdhdXNzaWFuQmx1cgogICAgICAgICBpbj0iY29tcG9zaXRlMSIKICAgICAgICAgc3RkRGV2aWF0aW9uPSIwLjIiCiAgICAgICAgIHJlc3VsdD0iYmx1ciIKICAgICAgICAgaWQ9ImZlR2F1c3NpYW5CbHVyMTM1MiIgLz4KICAgICAgPGZlT2Zmc2V0CiAgICAgICAgIGR4PSIwIgogICAgICAgICBkeT0iMC4xIgogICAgICAgICByZXN1bHQ9Im9mZnNldCIKICAgICAgICAgaWQ9ImZlT2Zmc2V0MTM1NCIgLz4KICAgICAgPGZlQ29tcG9zaXRlCiAgICAgICAgIGluPSJTb3VyY2VHcmFwaGljIgogICAgICAgICBpbjI9Im9mZnNldCIKICAgICAgICAgb3BlcmF0b3I9Im92ZXIiCiAgICAgICAgIHJlc3VsdD0iY29tcG9zaXRlMiIKICAgICAgICAgaWQ9ImZlQ29tcG9zaXRlMTM1NiIgLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8bWV0YWRhdGEKICAgICBpZD0ibWV0YWRhdGExMzgxIj4KICAgIDxyZGY6UkRGPgogICAgICA8Y2M6V29yawogICAgICAgICByZGY6YWJvdXQ9IiI+CiAgICAgICAgPGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+CiAgICAgICAgPGRjOnR5cGUKICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPgogICAgICAgIDxkYzp0aXRsZT48L2RjOnRpdGxlPgogICAgICA8L2NjOldvcms+CiAgICA8L3JkZjpSREY+CiAgPC9tZXRhZGF0YT4KICA8ZwogICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKC04Mi42NDU5OTMsLTQ0LjQyOTU4OSkiCiAgICAgaWQ9ImxheWVyMSI+CiAgICA8cGF0aAogICAgICAgc3R5bGU9ImNvbG9yOiMwMDAwMDA7Zm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDtmb250LXdlaWdodDpub3JtYWw7Zm9udC1zdHJldGNoOm5vcm1hbDtmb250LXNpemU6bWVkaXVtO2xpbmUtaGVpZ2h0Om5vcm1hbDtmb250LWZhbWlseTpzYW5zLXNlcmlmO2ZvbnQtdmFyaWFudC1saWdhdHVyZXM6bm9ybWFsO2ZvbnQtdmFyaWFudC1wb3NpdGlvbjpub3JtYWw7Zm9udC12YXJpYW50LWNhcHM6bm9ybWFsO2ZvbnQtdmFyaWFudC1udW1lcmljOm5vcm1hbDtmb250LXZhcmlhbnQtYWx0ZXJuYXRlczpub3JtYWw7Zm9udC12YXJpYW50LWVhc3QtYXNpYW46bm9ybWFsO2ZvbnQtZmVhdHVyZS1zZXR0aW5nczpub3JtYWw7Zm9udC12YXJpYXRpb24tc2V0dGluZ3M6bm9ybWFsO3RleHQtaW5kZW50OjA7dGV4dC1hbGlnbjpzdGFydDt0ZXh0LWRlY29yYXRpb246bm9uZTt0ZXh0LWRlY29yYXRpb24tbGluZTpub25lO3RleHQtZGVjb3JhdGlvbi1zdHlsZTpzb2xpZDt0ZXh0LWRlY29yYXRpb24tY29sb3I6IzAwMDAwMDtsZXR0ZXItc3BhY2luZzpub3JtYWw7d29yZC1zcGFjaW5nOm5vcm1hbDt0ZXh0LXRyYW5zZm9ybTpub25lO3dyaXRpbmctbW9kZTpsci10YjtkaXJlY3Rpb246bHRyO3RleHQtb3JpZW50YXRpb246bWl4ZWQ7ZG9taW5hbnQtYmFzZWxpbmU6YXV0bztiYXNlbGluZS1zaGlmdDpiYXNlbGluZTt0ZXh0LWFuY2hvcjpzdGFydDt3aGl0ZS1zcGFjZTpub3JtYWw7c2hhcGUtcGFkZGluZzowO3NoYXBlLW1hcmdpbjowO2lubGluZS1zaXplOjA7Y2xpcC1ydWxlOm5vbnplcm87ZGlzcGxheTppbmxpbmU7b3ZlcmZsb3c6dmlzaWJsZTt2aXNpYmlsaXR5OnZpc2libGU7b3BhY2l0eToxO2lzb2xhdGlvbjphdXRvO21peC1ibGVuZC1tb2RlOm5vcm1hbDtjb2xvci1pbnRlcnBvbGF0aW9uOnNSR0I7Y29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzOmxpbmVhclJHQjtzb2xpZC1jb2xvcjojMDAwMDAwO3NvbGlkLW9wYWNpdHk6MTt2ZWN0b3ItZWZmZWN0Om5vbmU7ZmlsbDojZDlkYWRlO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDowLjQ2NTtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmQ7c3Ryb2tlLW1pdGVybGltaXQ6NDtzdHJva2UtZGFzaGFycmF5Om5vbmU7c3Ryb2tlLWRhc2hvZmZzZXQ6MDtzdHJva2Utb3BhY2l0eToxO2NvbG9yLXJlbmRlcmluZzphdXRvO2ltYWdlLXJlbmRlcmluZzphdXRvO3NoYXBlLXJlbmRlcmluZzphdXRvO3RleHQtcmVuZGVyaW5nOmF1dG87ZW5hYmxlLWJhY2tncm91bmQ6YWNjdW11bGF0ZTtzdG9wLWNvbG9yOiMwMDAwMDA7c3RvcC1vcGFjaXR5OjEiCiAgICAgICBkPSJtIDg1LjEwNDk3OCw0NC40Mjk1ODkgYyAtMS4zNTUzMTQsMCAtMi40NTg5ODYsMS4xMDM2NyAtMi40NTg5ODUsMi40NTg5OCAtMTBlLTcsMS4zNTUzMSAxLjEwMzY3MSwyLjQ1ODk5IDIuNDU4OTg1LDIuNDU4OTggMS4yOTE5ODMsMTBlLTYgMi4yOTQwNzQsLTEuMDI5MDggMi4zOTA2MjUsLTIuMjk2ODcgYSAwLjIzMjUsMC4yMzI1IDAgMCAwIDAuMDY4MzYsLTAuMTYyMTEgMC4yMzI1LDAuMjMyNSAwIDAgMCAtMC4wNjY0MSwtMC4xNjAxNiBjIC0wLjA5NTMzLC0xLjI2ODk4IC0xLjA5OTczNSwtMi4yOTg4MiAtMi4zOTI1NzgsLTIuMjk4ODIgeiBtIDAsMC40NjQ4NCBjIDEuMTA0MDA5LDAgMS45OTQxNDIsMC44OTAxMyAxLjk5NDE0LDEuOTk0MTQgMmUtNiwxLjEwNDAxIC0wLjg5MDEzMSwxLjk5NDE0IC0xLjk5NDE0LDEuOTk0MTQgLTEuMTA0MDEsMCAtMS45OTQxNDIsLTAuODkwMTMgLTEuOTk0MTQxLC0xLjk5NDE0IC0xMGUtNywtMS4xMDQwMSAwLjg5MDEzMSwtMS45OTQxNCAxLjk5NDE0MSwtMS45OTQxNCB6IgogICAgICAgaWQ9InBhdGgxNTA5IiAvPgogIDwvZz4KPC9zdmc+Cg==') no-repeat;
+            background-size: 100% 100%;       
+            margin-right: 1.0rem;
+        }
+
         /* Style for done button */ 
         .vvtsd-done-button{
             background-color: #e7f0ff;
@@ -102,27 +121,91 @@
 
         }
 
+        /* Additional style */
+        .generalTitle{
+            font-weight: 800;
+            font-size: 2em;
+            color: rgba(0,0,0,0.8);
+            margin-top: 1rem;
+        }
+
+        .generalContent{              
+            display: inline-block;          
+            color: rgba(0,0,0,0.8);
+            margin-top: 1rem;  
+            background-color: #ffffff;
+            border-radius: 0.4rem;
+            padding: 0.8rem 0.8rem 0.8rem 0.8rem;
+            color: #9b9da2;                        
+            margin-top: 0.2rem;                        
+        }
+
     </style>
 
 </head>
 <body>
-    <div id="app">        
+    <div id="app">             
+        <div class="generalTitle">Demo</div>
+        <vue-vts-dropdown-single 
+            v-bind:initial_selected_option="dataDropdowns.dataDropdowDemoSingle.selected_option" 
+            v-bind:empty_message="dataDropdowns.dataDropdowDemoSingle.empty_message"                       
+            v-bind:options="dataDropdowns.dataDropdowDemoSingle.options"            
+            ></vue-vts-dropdown-single>        
         <vue-vts-dropdown-multiple 
-            v-bind:selected_options="dataDropdowns.dataDropdowTwo.selected_options" 
-            v-bind:empty_message="dataDropdowns.dataDropdowTwo.empty_message"                       
-            v-bind:options="dataDropdowns.dataDropdowTwo.options"></vue-vts-dropdown-multiple>        
+            v-bind:initial_selected_options="dataDropdowns.dataDropdowDemoMultiple.selected_options" 
+            v-bind:empty_message="dataDropdowns.dataDropdowDemoMultiple.empty_message"                       
+            v-bind:options="dataDropdowns.dataDropdowDemoMultiple.options"
+            v-bind:select_all_options_text="dataDropdowns.dataDropdowDemoSingle.select_all_options_text"
+            ></vue-vts-dropdown-multiple>        
 
-        <vue-vts-dropdown-multiple 
-            v-bind:selected_options="dataDropdowns.dataDropdowOne.selected_options" 
-            v-bind:empty_message="dataDropdowns.dataDropdowOne.empty_message"                       
-            v-bind:options="dataDropdowns.dataDropdowOne.options"></vue-vts-dropdown-multiple>        
-    
+        <div class="generalTitle">General Single Demos</div>
+        <vue-vts-dropdown-single 
+            v-bind:empty_message="dataDropdowns.dropDownSingle1.empty_message"                       
+            v-bind:options="dataDropdowns.dropDownSingle1.options"></vue-vts-dropdown-single>        
+        <vue-vts-dropdown-single                                
+            v-bind:options="dataDropdowns.dropDownSingle2.options"></vue-vts-dropdown-single>        
+
+        <div class="generalTitle">General Multiple Demos</div>     
+        <vue-vts-dropdown-multiple       
+            v-bind:empty_message="dataDropdowns.dropDownMultiple1.empty_message"                       
+            v-bind:options="dataDropdowns.dropDownMultiple1.options"></vue-vts-dropdown-multiple>        
+        <vue-vts-dropdown-multiple             
+            v-bind:empty_message="dataDropdowns.dropDownMultiple2.empty_message"                       
+            v-bind:options="dataDropdowns.dropDownMultiple2.options"></vue-vts-dropdown-multiple>                      
+
+        <div class="generalTitle">Technical info</div>
+        <pre class=generalContent>
+There are two Vue components implemented, one for single item selection and 
+other for multiple items.
+
+Some configuration can be passed to the components as props, the options 
+displayed, the empty selection text, the done button text and the initial 
+selected values.
+
+The options and selected objects need to have at least:
+
+    - id: for identification of the object
+    - title: to be displayed in the options list
+
+There is some room for improvements. For example, in the image in Google Drive
+document all the options seems selected but the "All Arrangement Types" is not,
+my interpretation, if this item is used, all the options are selected, but if
+all the options are selected, this option should be also selected. Maybe there 
+is some specification not in that document.
+
+There is also pending to implement some mechanism to get the values selected from 
+the components, there are options like emit an event from the component or use a 
+more complex state management library like Vuex.
+
+</pre>
+
     </div>
     
+    <!-- Templates ----------------------------------------------- -->
     <script type="text/x-template" id="vue-vts-dropdown-multiple-template">
         <div class="vvtsd-container" v-click-outside="closeDialog">           
             <div class="vvtsd-button" v-on:click="toggleDialog()">
-                {{ generatePickerText() }}                           
+                {{ pickerText }}                           
             </div>
             <div 
                 class="vvtsd-dialog" 
@@ -152,9 +235,103 @@
         </div>
     </script>
 
-    <script >
+    <script type="text/x-template" id="vue-vts-dropdown-single-template">
+        <div class="vvtsd-container" v-click-outside="closeDialog">           
+            <div class="vvtsd-button" v-on:click="toggleDialog()">
+                {{ pickerText }}                           
+            </div>
+            <div 
+                class="vvtsd-dialog" 
+                v-if="isPickerShow">
+                <div class="vvtsd-option-container">                    
+                    <div 
+                        class="vvtsd-option"
+                        v-for="option in optionsComputed" 
+                        :key="option.id"
+                        v-on:click="toggleSelectOption(option)">
+                        <div class="vvtsd-checked-single-option" v-if="option.isSelected" ></div>
+                        <div class="vvtsd-unchecked-single-option" v-else ></div>  {{ option.title }}
+                    </div>
+                </div>                
+            </div>                 
+        </div>
+    </script>
+    <!-- End Templates ----------------------------------------------- -->
+
+    <!-- Vue Components ---------------------------------------------- -->
+    <script >        
+    Vue.component('vue-vts-dropdown-single', {
+        props: { 
+            'initial_selected_option':{   
+                //Defines the initial item selected
+                type: Object,
+                default: null
+            },        
+            'empty_message': {
+                //String to display when there is none item selected
+                type: String,
+                default: "Please select an option"
+            }, 
+            'options':{
+                //Array with items with the form {title:"This is an option"} to show as options
+                type: Array,
+                default: []
+            }                             
+        },
+        data:  function () {
+            return {              
+                'isPickerShow': false,
+                'selected_option' : this.initial_selected_option ? {...this.initial_selected_option} : null
+            }
+        },
+        template: '#vue-vts-dropdown-single-template',        
+        methods:{
+            closeDialog(event){
+                this.isPickerShow = false
+            },
+            toggleDialog(){                                      
+                //Toggle visibility of picker dialog
+                this.isPickerShow = !this.isPickerShow
+            },
+            toggleSelectOption(option){
+                 //Toggle the selection of a single item
+                this.selected_option = {...option}
+                this.isPickerShow = false
+            }
+        },        
+        computed: {  
+            pickerText(){
+                //Return the text used for the picker button
+                if(this.selected_option){                    
+                    return this.selected_option.title
+                }else{
+                    return this.empty_message    
+                }                                                                 
+            },      
+            optionsComputed() {        
+                //Returns the options with a new attribute indicating the item is selected
+                return this.options.map(
+                    option => this.selected_option && this.selected_option.id === option.id
+                    ?   {
+                            ...option,
+                            isSelected: true
+                        }
+                    : {
+                            ...option,
+                            isSelected: false
+                        })
+            }
+        }    
+    })
+
     Vue.component('vue-vts-dropdown-multiple', {
-        props: {            
+        props: {       
+            'initial_selected_options':{   
+                //Defines the first elements selected             
+                type: Array,
+                default: () => ([])
+                //default: []
+            },     
             'empty_message': {
                 //String to display when there is none item selected
                 type: String,
@@ -173,14 +350,13 @@
             'select_all_options_text': {
                 //String to display on the select all options
                 type: String,
-                default: "All Arrangement Types"
+                default: "Select All"
             },                              
         },
         data:  function () {
             return {              
                 'isPickerShow': false,
-                'selected_options' : []
-
+                'selected_options' : [...this.initial_selected_options]
             }
         },
         template: '#vue-vts-dropdown-multiple-template',        
@@ -212,8 +388,10 @@
                     //Add to selected
                     this.selected_options = this.selected_options.concat(option)
                 }
-            },
-            generatePickerText(){
+            }
+        },        
+        computed: { 
+            pickerText(){
                 //Return the text used for the picker button
                 switch(this.selected_options.length){
                     case 0:{
@@ -227,9 +405,7 @@
                     }
                 }                
                 
-            }
-        },        
-        computed: {        
+            },       
             optionsComputed() {        
                 //Returns the options with a new attribute indicating the item is selected
                 return this.options.map(
@@ -266,43 +442,77 @@
             document.body.removeEventListener('click', el.clickOutsideEvent)
         },
     })
+    </script > 
+    <!-- End Vue Components ---------------------------------- -->
+
+    <!-- Definition Vue App ---------------------------------- -->
+    <script >     
+
+    const marketPlaces = [
+        { id:"1", title:"Airbnb" },
+        { id:"2", title:"Vrbo" }
+    ]
+    const arrangementTypes = [
+        { id:"1", title:"Private Room"},
+        { id:"2", title:"Shared Room" }
+    ]
+    const cities = [ 
+        { id:"1", title:"Barranquilla"},        
+        { id:"2", title:"Cartagena"},        
+        { id:"3", title:"Medellín"},        
+        { id:"4", title:"Bogotá"},        
+        { id:"5", title:"Santander"},        
+        { id:"6", title:"Cali"}               
+    ]
+    const foods = [ 
+        { id:"1", title:"Vegetables"},        
+        { id:"2", title:"Fruits"},        
+        { id:"3", title:"Grains, Beans and Nuts"},        
+        { id:"4", title:"Meat and Poultry"},        
+        { id:"5", title:"Fish and Seafood"},
+        { id:"6", title:"Pizza"}   
+    ]
+    const genders = [ 
+        { id:"1", title:"Male"},        
+        { id:"2", title:"Female"}
+    ]
 
     const app = new Vue({
         el: '#app',
-        data: {
-            message: 'Hello Vue!',
+        data: {           
             dataDropdowns:{
-                dataDropdowOne:{
-                    selected_options: [],
+                dataDropdowDemoMultiple:{
+                    selected_options: [...arrangementTypes],
                     empty_message: "Please select at least one option",
-                    options:[
-                        {
-                            id:"1",
-                            title:"Private Room"
-                        },
-                        {
-                            id:"2",
-                            title:"Shared Room"
-                        }
-                    ]
+                    options: arrangementTypes,
+                    select_all_options_text:"All Arrangement Types"
                 },
-                dataDropdowTwo:{
-                    selected_options: [],
-                    empty_message: "Please select at least one option",
-                    options:[
-                        {
-                            id:"1",
-                            title:"Airbnb"
-                        },
-                        {
-                            id:"2",
-                            title:"Vrbo"
-                        }
-                    ]
+                dataDropdowDemoSingle:{
+                    selected_option: {...marketPlaces[0]},
+                    empty_message: "Please select an option",
+                    options: marketPlaces
+                },
+                dropDownSingle1:{                    
+                    empty_message: "Please select a gender",
+                    options: genders
+                },
+                dropDownSingle2:{
+                    options: cities
+                },
+                dropDownMultiple1:{
+                    empty_message: "Please select cities you want to visit",
+                    options: cities
+                    
+                },
+                dropDownMultiple2:{                    
+                    empty_message: "Please select some foods",
+                    options: foods ,
+                    done_button_text: "Let's Eat!"
                 }
             }
         }
     })
-      </script>
+    </script>
+    <!-- End Definition Vue App ---------------------------------- -->
 </body>
 </html>
